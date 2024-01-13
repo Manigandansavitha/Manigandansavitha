@@ -1,0 +1,4 @@
+- 👋 Hi, I’m savitha
+- 👀 I’m interested in web development and data science
+- 🌱 I’m currently learning AIDS
+- 📫 How to reach me manigandansavitha@gmail.com
