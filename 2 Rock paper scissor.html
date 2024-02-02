@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr"> <!-- dir="ltr" specifies the text direction as left-to-right. -->
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width  initial-scale=1.0 user-scalable">
+        <title>Rock Paper Scissors Tutorial</title>
+
+        <style>
+        body{
+            font-family: 'Courier New', Courier, monospace;
+            display:flex;
+            flex-direction: column;
+            align-items: center;
+            background-color:rgb(245, 245, 217);
+        }
+        #choices{
+            margin-bottom: 30px;
+        }
+        button{
+            font-size: 50px;
+            margin:0 10px;
+            border-radius: 20px;
+            background-color: rgb(39, 36, 36);
+        }
+        button:hover{
+            background-color: rgb(87, 8, 79);
+        }
+        #playerDisplay, #computerDisplay{
+          
+            font-size: 2rem ;
+            font-weight:550;
+        }
+        #resultDisplay{
+            font-size: 3.5rem;
+            font-weight:bolder;
+            margin:30px 0px;
+        }
+        .greenText{
+            color:#23c000;
+        }
+        .redText{
+            color:red;
+        }
+        .scoreDisplay{
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        #computerScoreDisplay{
+            color:red;
+            font-weight: 600;
+        }
+        #playerScoreDisplay{
+            color:rgb(0, 197, 0);
+            font-weight: 600;
+        }
+        #quit{
+            background-color: rgb(88, 177, 255);
+            margin-top: 20px;
+        }
+        
+        </style>
+    </head>
+<body>
+    <h1>Rock - Paper - Scissors</h1>
+    <div id="choices">
+        <button onclick="playGame('rock')" >👊</button>
+        <button onclick="playGame('paper')">✋</button>
+        <button onclick="playGame('scissors')">✌️</button>
+  
+    </div >
+    
+    <div id="playerDisplay">PLAYER: </div>
+    <div id="computerDisplay">COMPUTER: </div>
+     <div id="resultDisplay"> </div>
+
+     <div class="scoreDisplay">Player Score:
+        <span id="playerScoreDisplay">0</span>
+     </div>
+     <div class="scoreDisplay">Computer Score:
+        <span id="computerScoreDisplay">0</span>
+     </div>
+
+
+     <button id="quit" onclick="Quit()">Quit</button>
+    
+  
+
+    <script>
+       const choice =['rock','paper','scissors'];
+       const computerDisplay = document.getElementById("computerDisplay");
+       const userDisplay = document.getElementById("playerDisplay");
+       const resultDisplay = document.getElementById("resultDisplay");
+       const playerScoreDisplay = document.getElementById("playerScoreDisplay");
+       const computerScoreDisplay= document.getElementById("computerScoreDisplay");
+      
+       
+
+       let playerScore = 0;
+       let computerScore = 0;
+
+
+       function playGame(userChoice){
+        const computerChoice = choice[Math.floor(Math.random() * 3)];
+
+        let result;
+
+        if(userChoice === computerChoice){
+            result ="It's a tie! 😏";
+        }
+        else{
+            switch(userChoice){
+                case "rock":
+                    result =(computerChoice === "scissors")? "YOU WIN! 🎉" :"YOU LOSE! 😥";
+                    break;
+                
+                case "paper":
+                    result =(computerChoice === "rock")? "YOU WIN! 🎉" :"YOU LOSE! 😥";
+                    break;
+
+                case "scissors":
+                    result =(computerChoice === "paper")? "YOU WIN! 🎉" :"YOU LOSE! 😥";
+                    break;
+                
+            }
+        }
+       
+
+       userDisplay.textContent = `PLAYER: ${userChoice}`;
+       computerDisplay.textContent = `COMPUTER: ${computerChoice}`;
+       resultDisplay.textContent=result;
+       resultDisplay.classList.remove("greenText","redText");
+
+    //    if(result==='YOU WIN!'){
+    //     resultDisplay.classList.add("🎉");
+    //    }
+    //    else if(result==='YOU LOSE!'){
+    //     resultDisplay.classList.add("😥");
+    //    }
+    //    else{
+    //     resultDisplay.classList.add("😏");
+    //    }
+
+       switch(result){
+        case "YOU WIN! 🎉":
+            resultDisplay.classList.add("greenText");
+            playerScore++;
+            playerScoreDisplay.textContent = playerScore;
+            break;
+
+        case "YOU LOSE! 😥":
+            resultDisplay.classList.add("redText");
+            computerScore++;
+            computerScoreDisplay.textContent = computerScore;
+            break;
+       }
+
+       function Quit(){
+
+        if(computerScore < playerScore){
+            alert(`Congratulations, you've beaten the computer with a score of ${playerScoreDisplay} 🤩`)
+        }
+        else if(computerScore > playerScore){
+            alert(`Better luck next time, the computer has beaten you with a score of ${computerScore}`)
+        }
+        else{
+            alert('It\'s a draw!');
+        }
+
+       }
+
+
+    }
+
+
+    </script>
+</body>
+</html>
